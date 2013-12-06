@@ -30,7 +30,7 @@ job-pvu
 
 目前直接通过Intent的setExtra返回basic结果，以后可以考虑返回通过json序列化的Object对象
 
-所有键值前加ticket_前缀
+所有键值前加ticket_前缀。类型均为String。
 
 * "type": "票卡类型"
 * "num": "票卡卡号"
