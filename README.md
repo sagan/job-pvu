@@ -16,14 +16,16 @@ job-pvu
 
 1. 写一个读卡器类ReaderService继承IntentService
 
-1. 在AndroidManifesto里添加几行监听"cn.panda.metro.android.psu.READER.query"事件
+2. 在AndroidManifesto里添加几行监听"cn.panda.metro.android.psu.READER.query"事件
 
 
+<pre>
 	<service android:name=".ReaderService"></service>
 	<receiver android:name=".ReaderQueryReceiver">
 	<intent-filter>
 	<action android:name="cn.panda.metro.android.psu.READER.query" />
 	</intent-filter>
 	</receiver>
+</pre>
 
-ReaderService请参考ReaderService.java里实例代码
+ReaderService请参考ReaderService.java里示例代码
