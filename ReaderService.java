@@ -14,6 +14,12 @@ import android.content.*;
 // 
 public class ReaderService extends IntentService {
 
+	// 返回读卡结果的broadcast事件名
+        public static final String READER_RECEIVER = "cn.panda.metro.android.psu.READER"; // receive a reader result
+
+	// 监听读卡器请求的broadcast事件名
+        public static final String READER_QUERY_RECEIVER = "cn.panda.metro.android.psu.READER.query"; //query to start a card-reader
+
 	/**
 	 * required, parameter is thread name (id)
 	 */
@@ -50,7 +56,7 @@ public class ReaderService extends IntentService {
 			} else {
 				Thread.sleep(3000); //simulate card reader
 
-				Intent result = new Intent(Commons.READER_RECEIVER);
+				Intent result = new Intent( READER_RECEIVER );
 
 				// the following variables are necessary and required.
 				result.putExtra("type", intent.getIntExtra("type"));
