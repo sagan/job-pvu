@@ -19,11 +19,11 @@ job-pvu
 1. 在AndroidManifesto里添加几行监听"cn.panda.metro.android.psu.READER.query"事件
 
 
-    <service android:name=".ReaderService"></service>
-    <receiver android:name=".ReaderQueryReceiver">
-    <intent-filter>
-    <action android:name="cn.panda.metro.android.psu.READER.query" />
-    </intent-filter>
-    </receiver>
+	<service android:name=".ReaderService"></service>
+	<receiver android:name=".ReaderQueryReceiver">
+	<intent-filter>
+	<action android:name="cn.panda.metro.android.psu.READER.query" />
+	</intent-filter>
+	</receiver>
 
 ReaderService请参考ReaderService.java里实例代码
