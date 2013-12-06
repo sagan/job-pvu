@@ -3,9 +3,12 @@ job-pvu
 
 目前通过Broadcast事件实现读卡器和App前台UI之间交互。（以后是否可以考虑一直在后台不断寻卡）
 
-两个事件
+建议在开发阶段将读卡器代码创建单独的App（不需要任何UI，只有一个自动运行的后台Service）。
+正式发布时可以将轻易将两部分代码合并到一个App中。
 
-* cn.panda.metro.android.psu.READER.query：监听到这个事件时，开始寻卡
+事件
+
+* cn.panda.metro.android.psu.READER.query：UI发出。监听到这个事件时，开始寻卡
 
 * cn.panda.metro.android.psu.READER：通过这个事件将读卡结果返回给UI。读卡器超时或错误时也返回结果，并设置
 错误标志位
@@ -14,18 +17,9 @@ job-pvu
 读写器Service进程
 ===
 
-1. 写一个读卡器类ReaderService继承IntentService
+文件
 
-2. 在AndroidManifesto里添加几行监听"cn.panda.metro.android.psu.READER.query"事件
+* ReaderService: 通过IntentService启动读卡后台线程
+* ReaderQueryReceiver.java: 监听UI发出的读卡请求事件，并调用ReaderService
+* AndroidManifest.xml: 注册ReaderService和ReaderQueryReceiver
 
-
-<pre>
-	<service android:name=".ReaderService"></service>
-	<receiver android:name=".ReaderQueryReceiver">
-	<intent-filter>
-	<action android:name="cn.panda.metro.android.psu.READER.query" />
-	</intent-filter>
-	</receiver>
-</pre>
-
-ReaderService请参考ReaderService.java里示例代码
